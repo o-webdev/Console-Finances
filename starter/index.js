@@ -91,6 +91,9 @@ var finances = [
 var totalNumOfMonths = finances.length;
 // The net total amount of Prof/Loss over the entire period
 var netTotalProfLoss = 0;
+for (var i = 0; i < finances.length; i++ ) {
+    netTotalProfLoss += finances[i][1];
+}
 // The average changes in Prof/Loss over the entire period
 // track total change in profit from month to month and then find average
 // (total/number of month)
