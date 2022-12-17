@@ -89,19 +89,29 @@ var finances = [
 
 //Calculate total number of month in dataset
 var totalNumOfMonths = finances.length;
-// The net total amount of Prof/Loss over the entire period
+
+// Variables 
 var netTotalProfLoss = 0;
+var averageChange = 0;
+var totalChange = 0;
+var numChange = 0;
+var greatestIncreaseProf = 0;
+var greatestDecreaseLoss = 0;
+
+// Calculate net total of dataset
 for (var i = 0; i < finances.length; i++ ) {
     netTotalProfLoss += finances[i][1];
 }
-// The average changes in Prof/Loss over the entire period
-// track total change in profit from month to month and then find average
-// (total/number of month)
-var averageChange = 0;
-// Greatest increase in profit
-var greatestIncreaseProf = 0;
-// Great decrease in losses
-var greatestDecreaseLoss = 0;
+
+// Calculate the average of the changes in Profit/Losses over the entire period.
+for (var i =1; i <finances.length; i++){
+    var change = finances[i][1] - finances[i -1][1];
+    totalChange += change;
+    numChange++;
+}
+
+averageChange = (totalChange / numChange).toFixed(2)    // Round average to 2 decimal points
+
 
 // logging the results to the console
 console.log(
