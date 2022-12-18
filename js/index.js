@@ -90,28 +90,44 @@ var finances = [
 //Calculate total number of month in dataset
 var totalNumOfMonths = finances.length;
 
-// Variables 
-var netTotalProfLoss = 0;
-var averageChange = 0;
-var totalChange = 0;
-var numChange = 0;
-var greatestIncreaseProf = 0;
-var greatestDecreaseLoss = 0;
+// Variable declarations 
+var netTotalProfLoss = 0; // total sum of profit and loss
+var averageChange = 0; // average change after calculating total change 
+var totalChange = 0; // used to calulate the change between current/previous month
+var numChange = 0; // used to calulate the change between current/previous month
+var greatestIncreaseProf = 0; // greatest increase (amount)
+var greatestIncDate = ""; // greatest increase (date)
+var greatestDecreaseLoss = 0; // greatest decrease (amount)
+var greatestDecDate = ""; //greatest decrease (date)
 
 // Calculate net total of dataset
 for (var i = 0; i < finances.length; i++ ) {
     netTotalProfLoss += finances[i][1];
 }
 
-// Calculate the average of the changes in Profit/Losses over the entire period.
+// Calculate the change in profit between current and previous month 
 for (var i =1; i <finances.length; i++){
     var change = finances[i][1] - finances[i -1][1];
     totalChange += change;
     numChange++;
+
+// Calculate the average change and round to 2 decimal points
+averageChange = (totalChange / numChange).toFixed(2)  
+
+// for (var i = 1; i < finances.length; i++){
+//     var change = finances[i][1] - finances[i -1][1];
+    
+// Greatest Increase in profit
+    if (change > greatestIncreaseProf) {
+        greatestIncreaseProf = change;
+        greatestIncDate = finances[i][0];
+    }
+// Greatest Decrease in profit
+    if (change < greatestDecreaseLoss) {
+        greatestDecreaseLoss = change;
+        greatestDecDate = finances[i][0];
+    }  
 }
-
-averageChange = (totalChange / numChange).toFixed(2)    // Round average to 2 decimal points
-
 
 // logging the results to the console
 console.log(
@@ -122,7 +138,7 @@ console.log(
     "\nAverage Change: " +
     averageChange +
     "\nGreatest Increase in Profit: " +
-    greatestIncreaseProf +
+    greatestIncDate + " ($" + greatestIncreaseProf +")"  +
     "\nGreatest Decrease in Losses: " +
-    greatestDecreaseLoss
+    greatestDecDate + " ($" + greatestDecreaseLoss +")"
 );
