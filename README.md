@@ -26,6 +26,8 @@ The task was to produce JavaScript code using an existing dataset that analyes t
 ## Final Project Screenshot
 
 ![Alt text](assets/Console-finance%20screenshot.png)
+
+Link to github pages site: https://omar-ahm.github.io/Console-Finances/
 #
 
 ## Credits
